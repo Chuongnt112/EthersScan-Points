@@ -57,7 +57,7 @@ async function loop() {
             if (!found) {
                 console.log('⚠️  Không thấy #mystery-box-btn (cookie hết hạn? hoặc DOM thay đổi).');
             } else {
-                console.log(`[${new Date().toLocaleString()}] Mystery Box: ${disabled ? 'DISABLED' : 'ACTIVE'}`);
+                await sendTelegram(`[${new Date().toLocaleString()}] Mystery Box: ${disabled ? 'DISABLED' : 'ACTIVE'}`);
 
                 if (!disabled) {
                     await sendTelegram('🚀 Mystery Box đang ACTIVE — vào claim ngay!');
