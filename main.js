@@ -50,6 +50,8 @@ async function getMysteryBoxState() {
 }
 
 async function loop() {
+    await sendTelegram(`Start listening...`);
+    
     while (true) {
         try {
             const { found, disabled } = await getMysteryBoxState();
@@ -57,7 +59,7 @@ async function loop() {
             if (!found) {
                 console.log('⚠️  Không thấy #mystery-box-btn (cookie hết hạn? hoặc DOM thay đổi).');
             } else {
-                await sendTelegram(`[${new Date().toLocaleString()}] Mystery Box: ${disabled ? 'DISABLED' : 'ACTIVE'}`);
+                console.log(`[${new Date().toLocaleString()}] Mystery Box: ${disabled ? 'DISABLED' : 'ACTIVE'}`);
 
                 if (!disabled) {
                     await sendTelegram('🚀 Mystery Box đang ACTIVE — vào claim ngay!');
