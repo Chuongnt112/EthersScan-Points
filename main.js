@@ -5,8 +5,8 @@ const cheerio = require('cheerio');
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
 const COOKIE = process.env.COOKIE;
-const SECONDS_MIN = Number(process.env.INTERVAL_SECONDS_MIN || 500000);
-const SECONDS_MAX = Number(process.env.INTERVAL_SECONDS_MAX || 1000000);
+const INTERVAL_MIN = Number(process.env.INTERVAL_MIN || 10);
+const INTERVAL_MAX = Number(process.env.INTERVAL_MAX || 20);
 
 if (!TELEGRAM_TOKEN || !CHAT_ID || !COOKIE) {
     console.error('Thiếu TELEGRAM_TOKEN / CHAT_ID / COOKIE trong .env');
@@ -74,7 +74,7 @@ async function loop() {
             await sendTelegram(`Check error: ${e.message}`);
         }
 
-        await new Promise(r => setTimeout(r, random(SECONDS_MIN, SECONDS_MAX)));
+        await new Promise(r => setTimeout(r, random(INTERVAL_MIN, INTERVAL_MAX) * 60 * 1000));
     }
 }
 
