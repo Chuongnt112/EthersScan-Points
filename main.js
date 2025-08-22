@@ -50,8 +50,9 @@ async function getMysteryBoxState() {
     return { found: true, disabled };
 }
 
-function random(min, max){
-     return Math.random() * (max - min) + min;
+function random(min, max){     
+     let rd = Math.random() * (max - min) + min;
+     return rd.toFixed(1)
 }
 
 async function loop() {
@@ -74,10 +75,10 @@ async function loop() {
             await sendTelegram(`Check error: ${e.message}`);
         }
 
-        let nextInterval = random(INTERVAL_MIN, INTERVAL_MAX) * 60 * 1000
+        let nextInterval = random(INTERVAL_MIN, INTERVAL_MAX)
         console.log(`Sleeping ${nextInterval}s`)
         
-        await new Promise(r => setTimeout(r, nextInterval));
+        await new Promise(r => setTimeout(r, nextInterval * 60 * 1000));
     }
 }
 
