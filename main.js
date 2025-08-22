@@ -74,7 +74,10 @@ async function loop() {
             await sendTelegram(`Check error: ${e.message}`);
         }
 
-        await new Promise(r => setTimeout(r, random(INTERVAL_MIN, INTERVAL_MAX) * 60 * 1000));
+        let nextInterval = random(INTERVAL_MIN, INTERVAL_MAX) * 60 * 1000
+        console.log(`Sleeping ${nextInterval}s`)
+        
+        await new Promise(r => setTimeout(r, nextInterval));
     }
 }
 
