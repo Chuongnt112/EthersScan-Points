@@ -76,7 +76,7 @@ async function loop() {
         }
 
         let nextInterval = random(INTERVAL_MIN, INTERVAL_MAX)
-        console.log(`Sleeping ${nextInterval}s`)
+        console.log(`Sleeping ${nextInterval}m`)
         
         await new Promise(r => setTimeout(r, nextInterval * 60 * 1000));
     }
